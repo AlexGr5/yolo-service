@@ -13,26 +13,6 @@ REST-сервис детекции объектов на изображения�
 - Ограничение размера файла — 10 МБ (HTTP 413 при превышении).
 - Понятные ошибки: 400 (пустой файл/не изображение), 413 (слишком большой), 422 (невалидные параметры).
 
-## Структура проекта
-
-yolo-service/
-├── app/
-│   ├── config.py        # настройки (пути, пороги, лимиты)
-│   ├── inference.py     # preprocess, postprocess, загрузка модели
-│   └── main.py          # FastAPI приложение
-├── scripts/
-│   └── download_model.py # скрипт скачивания весов
-├── tests/
-│   ├── conftest.py
-│   ├── test_postprocess.py   # unit-тесты postprocess
-│   ├── test_api.py           # API-тесты с мок-моделью
-│   └── test_integration.py   # интеграционный тест (bus.jpg)
-├── requirements.txt
-├── Dockerfile
-├── pytest.ini
-└── README.md
-
-
 ## Требования
 
 - Python 3.11+
