@@ -1,0 +1,45 @@
+Есть "warnings", но это не проблема приложения. Это ерунда:
+1) Устаревшие библиотеки
+2) Запускал из Командной строки, а проект открыл в VSCode => нет прав на каталог с кешем тестов.
+
+
+
+
+E:\Projects\yolo-service>pytest -v
+================================================= test session starts =================================================
+platform win32 -- Python 3.11.9, pytest-8.3.0, pluggy-1.7.0 -- C:\Users\alex\AppData\Local\Programs\Python\Python311\python.exe
+cachedir: .pytest_cache
+rootdir: E:\Projects\yolo-service
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.16.0
+collected 12 items
+
+tests/test_api.py::test_health_endpoint PASSED                                                                   [  8%]
+tests/test_api.py::test_predict_returns_detections PASSED                                                        [ 16%]
+tests/test_api.py::test_predict_empty_file_returns_400 PASSED                                                    [ 25%]
+tests/test_api.py::test_predict_not_an_image_returns_400 PASSED                                                  [ 33%]
+tests/test_api.py::test_predict_huge_file_returns_413 PASSED                                                     [ 41%]
+tests/test_api.py::test_predict_invalid_conf_returns_422 PASSED                                                  [ 50%]
+tests/test_integration.py::test_integration_bus_image PASSED                                                     [ 58%]
+tests/test_postprocess.py::test_bbox_recalculated_to_original_coordinates PASSED                                 [ 66%]
+tests/test_postprocess.py::test_low_confidence_filtered_out PASSED                                               [ 75%]
+tests/test_postprocess.py::test_bbox_clipped_to_image_borders PASSED                                             [ 83%]
+tests/test_postprocess.py::test_nms_suppresses_overlapping_boxes PASSED                                          [ 91%]
+tests/test_postprocess.py::test_letterbox_and_reverse_recalculation PASSED                                       [100%]
+
+================================================== warnings summary ===================================================
+C:\Users\alex\AppData\Local\Programs\Python\Python311\Lib\site-packages\starlette\testclient.py:40
+  C:\Users\alex\AppData\Local\Programs\Python\Python311\Lib\site-packages\starlette\testclient.py:40: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+C:\Users\alex\AppData\Local\Programs\Python\Python311\Lib\site-packages\_pytest\cacheprovider.py:477
+  C:\Users\alex\AppData\Local\Programs\Python\Python311\Lib\site-packages\_pytest\cacheprovider.py:477: PytestCacheWarning: could not create cache path E:\Projects\yolo-service\.pytest_cache\v\cache\nodeids: [WinError 5] Отказано в доступе: 'E:\\Projects\\yolo-service\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+C:\Users\alex\AppData\Local\Programs\Python\Python311\Lib\site-packages\_pytest\stepwise.py:51
+  C:\Users\alex\AppData\Local\Programs\Python\Python311\Lib\site-packages\_pytest\stepwise.py:51: PytestCacheWarning: could not create cache path E:\Projects\yolo-service\.pytest_cache\v\cache\stepwise: [WinError 5] Отказано в доступе: 'E:\\Projects\\yolo-service\\.pytest_cache\\v\\cache'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================================== 12 passed, 3 warnings in 3.62s ============================================
